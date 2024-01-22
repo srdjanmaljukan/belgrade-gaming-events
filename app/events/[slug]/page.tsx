@@ -1,8 +1,18 @@
+"use client"
+
 import React from 'react'
 
-const EventPage = () => {
+interface Props {
+  params: {slug: string}
+}
+
+const EventPage = ({params}: Props) => {
+
   return (
-    <div>EventPage</div>
+    <div>
+      <h1>My Event</h1>
+      <h3>{params.slug}</h3>
+    </div>
   )
 }
 
