@@ -5,10 +5,11 @@ import { EventItem } from "@/app/components";
 import Link from "next/link";
 
 export default async function Home() {
-  const response = await fetch(`${API_URL}/api/events`, {
+  const response = await fetch(`${API_URL}/api/events?populate=*&sort=date:asc`, {
     next: { revalidate: 1 },
   });
-  const events: Event[] = await response.json();
+  const apiResponse = await response.json();
+  const events: Event[] = apiResponse.data.slice(0, 3);
 
   return (
     <main>
