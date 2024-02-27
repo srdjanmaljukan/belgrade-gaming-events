@@ -85,7 +85,6 @@ const EventForm = ({ event }: Props) => {
     const res = await fetch(`${API_URL}/api/events/${event?.id}?populate=*`)
     const apiResponse = await res.json();
     const evt: Event = apiResponse.data
-    console.log(evt);
     setImagePreview(evt.attributes.image.data?.attributes?.formats.thumbnail.url!)
     setShowModal(false);
   }
@@ -140,7 +139,7 @@ const EventForm = ({ event }: Props) => {
               type="date"
               id="date"
               name="date"
-              value={moment(values.date).format("yyyy-MM-DD")}
+              value={event ? moment(values.date).format("yyyy-MM-DD") : values.date}
               onChange={handleInputChange}
             />
           </div>

@@ -1,14 +1,22 @@
-import { API_URL } from '@/config';
-import { EventItem } from '../components';
-import { Event } from '../components/EventItem';
+import { API_URL } from "@/config";
+import { EventItem } from "../components";
+import { Event } from "../components/EventItem";
+import Link from "next/link";
 
-const EventsPage = async () => {
+const PER_PAGE = 2;
 
-  const response = await fetch(`${API_URL}/api/events?populate=*&sort=date:asc`, {
-    next: { revalidate: 1 },
-  });
+interface Props {
+  searchParams: { page: string };
+}
+
+const EventsPage = async ({ searchParams: { page = "1" } }: Props) => {
+  const response = await fetch(
+    `${API_URL}/api/events?populate=*&sort=date:asc&pagination[page]=${page}&pagination[pageSize]=${PER_PAGE}`,
+  );
   const apiResponse = await response.json();
   const events: Event[] = apiResponse.data;
+
+  const lastPage = Math.ceil(events.length / PER_PAGE)
 
   return (
     <div>
@@ -18,8 +26,12 @@ const EventsPage = async () => {
       {events.map((event) => (
         <EventItem key={event.id} event={event} />
       ))}
-    </div>
-  )
-}
 
-export default EventsPage
+      {page > 1 && (
+        <Link href={`/events?page=${page - 1}`}></Link>
+      )}
+    </div>
+  );
+};
+
+export default EventsPage;

@@ -17,10 +17,7 @@ const ImageUpload = ({ eventId, imageUploaded }: Props) => {
     formData.append("ref", "api::event.event");
     formData.append("refId", eventId);
     formData.append("field", "image");
-    for (const key of formData.entries()) {
-        console.log(key[0] + " " + key[1])
-    }
-
+    
     const res = await fetch(`${API_URL}/api/upload`, {
       method: "POST",
       body: formData,
