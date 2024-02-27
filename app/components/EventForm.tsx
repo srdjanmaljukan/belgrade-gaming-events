@@ -82,10 +82,11 @@ const EventForm = ({ event }: Props) => {
   };
 
   const imageUploaded = async () => {
-    const res = await fetch(`${API_URL}/api/events/${event?.id}`)
+    const res = await fetch(`${API_URL}/api/events/${event?.id}?populate=*`)
     const apiResponse = await res.json();
     const evt: Event = apiResponse.data
-    setImagePreview(evt.attributes.image.data?.attributes.formats.thumbnail.url!)
+    console.log(evt);
+    setImagePreview(evt.attributes.image.data?.attributes?.formats.thumbnail.url!)
     setShowModal(false);
   }
 
