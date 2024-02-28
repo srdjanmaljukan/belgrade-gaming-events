@@ -1,6 +1,5 @@
 "use client";
 
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
@@ -28,7 +27,6 @@ const EventActions = ({event, styles}: Props) => {
           })
 
           const data = await res.json()
-          console.log(data);
 
           if (!res.ok) {
             toast.error(data.message)
@@ -53,5 +51,7 @@ const EventActions = ({event, styles}: Props) => {
     </>
   );
 };
+
+export const dynamic = "force-dynamic"
 
 export default EventActions;

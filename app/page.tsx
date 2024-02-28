@@ -9,7 +9,7 @@ export default async function Home() {
     next: { revalidate: 1 },
   });
   const apiResponse = await response.json();
-  const events: Event[] = apiResponse.data.slice(0, 3);
+  const events: Event[] = apiResponse.data ? apiResponse.data.slice(0, 3) : [];
 
   return (
     <main>
