@@ -12,17 +12,16 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, error, test } = useContext(AuthContext);
+  const { login, error } = useContext(AuthContext);
 
-//   useEffect(() => {
-//     console.log(error)
-//   });
+  useEffect(() => {
+    error && toast.error(error)
+  }, [error]);
 
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     login({ email, password });
-    test()
   };
 
   return (

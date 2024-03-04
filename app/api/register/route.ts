@@ -3,15 +3,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
-  const { identifier, password } = await request.json();
+  const { username, email, password } = await request.json();
 
-  const strapiRes = await fetch(`${API_URL}/api/auth/local`, {
+  const strapiRes = await fetch(`${API_URL}/api/auth/local/register`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      identifier,
+      username,
+      email,
       password,
     }),
   });

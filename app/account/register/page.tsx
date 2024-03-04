@@ -16,6 +16,10 @@ const RegisterPage = () => {
 
   const { register, error } = useContext(AuthContext);
 
+  useEffect(() => {
+    error && toast.error(error)
+  }, [error]);
+
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
