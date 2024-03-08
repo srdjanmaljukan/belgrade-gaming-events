@@ -6,6 +6,7 @@ import Link from "next/link";
 export interface Event {
   id: string;
   attributes: {
+    id?: number
     name: string;
     slug: string;
     venue: string;
