@@ -17,13 +17,16 @@ const DashboardPage = async () => {
   const events: Event["attributes"][] = await res.json();
 
   return (
-    <div className={styles.dash}>
-      <h1>Dashboard</h1>
-      <h3>My Events</h3>
-      {events.map((event) => (
-        <DashboardEvent key={event.id} event={event} />
-      ))}
+    <div>
+      Dashboard
     </div>
+    // <div className={styles.dash}>
+    //   <h1>Dashboard</h1>
+    //   <h3>My Events</h3>
+    //   {events.map((event) => (
+    //     <DashboardEvent key={event.id} event={event} />
+    //   ))}
+    // </div>
   );
 };
 

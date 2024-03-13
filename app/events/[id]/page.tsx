@@ -4,12 +4,16 @@ import { Event } from "@/app/components/EventItem";
 import styles from "@/app/styles/Event.module.css";
 import { API_URL } from "@/config";
 import Link from "next/link";
+import { cookies } from "next/headers";
 
 interface Props {
   params: { id: string };
 }
 
 const EventPage = async ({ params }: Props) => {
+  // Remove token later and import
+  const token = cookies().get("token") ? cookies().get("token")?.value : "" 
+
   const response = await fetch(`${API_URL}/api/events/${params.id}?populate=*&sort=date:asc`, {
     next: { revalidate: 1 },
   });
@@ -20,7 +24,7 @@ const EventPage = async ({ params }: Props) => {
 
   return (
     <div className={styles.event}>
-      <EventActions styles={styles} event={event} />
+      <EventActions styles={styles} event={event} token={token} />
       
       <span>
         {new Date(event.attributes.date).toLocaleDateString("en-gb")} at {event.attributes.time}

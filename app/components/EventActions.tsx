@@ -14,16 +14,20 @@ interface Props {
     styles: {
         readonly [key: string]: string;
     }
+    token: string | undefined
 }
 
-const EventActions = ({event, styles}: Props) => {
+const EventActions = ({event, styles, token}: Props) => {
 
   const router = useRouter();
 
     const deleteEvent = async () => {
         if (confirm("Are you sure?")) {
           const res = await fetch(`${API_URL}/api/events/${event.id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
           })
 
           const data = await res.json()

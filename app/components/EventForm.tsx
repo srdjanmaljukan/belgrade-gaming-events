@@ -14,9 +14,11 @@ import ImageUpload from "./ImageUpload";
 
 interface Props {
   event: Event | undefined;
+  token: string | undefined
 }
 
-const EventForm = ({ event }: Props) => {
+const EventForm = ({ event, token }: Props) => {
+
   const [values, setValues] = useState({
     name: event?.attributes.name || "",
     performers: event?.attributes.performers || "",
@@ -53,6 +55,7 @@ const EventForm = ({ event }: Props) => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ data: values }),
         })
@@ -60,6 +63,7 @@ const EventForm = ({ event }: Props) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ data: values }),
         });
