@@ -1,4 +1,3 @@
-import EventActions from "@/app/components/EventActions";
 import EventImage from "@/app/components/EventImage";
 import EventMap from "@/app/components/EventMap";
 import { Event } from "@/app/components/EventItem";

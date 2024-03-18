@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { API_URL } from "@/config";
 import styles from "@/app/styles/Form.module.css";
-import getCookie from "@/helpers";
 
 interface Props {
   eventId: string;
