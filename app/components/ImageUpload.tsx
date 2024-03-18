@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { API_URL } from "@/config";
 import styles from "@/app/styles/Form.module.css";
+import getCookie from "@/helpers";
 
 interface Props {
   eventId: string;
   imageUploaded: () => void;
+  token: string | undefined
 }
 
-const ImageUpload = ({ eventId, imageUploaded }: Props) => {
+const ImageUpload = ({ eventId, imageUploaded, token }: Props) => {
+
   const [image, setImage] = useState<File | null>(null);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -21,6 +24,9 @@ const ImageUpload = ({ eventId, imageUploaded }: Props) => {
     const res = await fetch(`${API_URL}/api/upload`, {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
 

@@ -4,7 +4,7 @@ import { API_URL } from "@/config";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { cookies } from "next/headers";
+import getCookie from "@/helpers";
 
 interface Props {
   params: { id: string };
@@ -12,7 +12,7 @@ interface Props {
 
 const EditEventPage = async ({ params }: Props) => {
 
-  const token = cookies().get("token") ? cookies().get("token")?.value : "" 
+  const token = getCookie()
 
   const response = await fetch(
     `${API_URL}/api/events/${params.id}?populate=*&sort=date:asc`,

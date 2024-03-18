@@ -2,11 +2,11 @@ import EventForm from '@/app/components/EventForm';
 import Link from "next/link";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { cookies } from "next/headers";
+import getCookie from '@/helpers';
 
 const AddEventPage = () => {
 
-  const token = cookies().get("token") ? cookies().get("token")?.value : "" 
+  const token = getCookie()
 
   return (
     <div>

@@ -1,16 +1,16 @@
 "use client";
 
-import { API_URL } from "@/config";
 import styles from "@/app/styles/Form.module.css";
-import { FaImage } from "react-icons/fa";
+import { API_URL } from "@/config";
+import moment from "moment";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { FaImage } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { Event } from "./EventItem";
-import moment from "moment";
 import EventImage from "./EventImage";
-import Modal from "./Modal";
+import { Event } from "./EventItem";
 import ImageUpload from "./ImageUpload";
+import Modal from "./Modal";
 
 interface Props {
   event: Event | undefined;
@@ -190,7 +190,7 @@ const EventForm = ({ event, token }: Props) => {
         </button>
       </div>
       {showModal && <Modal onClose={() => setShowModal(false)} title="Image Upload">
-        {event && <ImageUpload eventId={event?.id} imageUploaded={imageUploaded} />}
+        {event && <ImageUpload eventId={event?.id} imageUploaded={imageUploaded} token={token} />}
       </Modal>}
     </div>
   );
